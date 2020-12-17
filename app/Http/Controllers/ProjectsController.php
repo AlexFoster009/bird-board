@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $projects = Project::all();
@@ -14,12 +18,19 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
-    public function show()
+    /**
+     * @param Project $project
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Project $project)
     {
-        $project = Project::findOrFail(request('project'));
+
         return view('projects.show', compact('project'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store()
     {
         // Validate the request.
